@@ -2,7 +2,13 @@
     --grid-cols:1;
     --grid-rows:1;
 }
-
+body{
+    margin: 0;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
 .sketch-container{
     display: grid;
     grid-template-columns: repeat(var(--grid-cols),1fr);
@@ -10,6 +16,12 @@
     width: 700px;
     height: 700px;
     /* box-shadow: 10px 10px grey; */
+}
+.header{
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .grid-item{
     /* padding: 1em; */
