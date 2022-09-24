@@ -1,0 +1,22 @@
+:root{
+    --grid-cols:1;
+    --grid-rows:1;
+}
+
+.sketch-container{
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols),1fr);
+    grid-template-rows: repeat(var(--grid-rows),1fr);
+    width: 700px;
+    height: 700px;
+    /* box-shadow: 10px 10px grey; */
+}
+.grid-item{
+    /* padding: 1em; */
+    border: 1px solid black;
+}
+
+
+.grid-item-draw{
+    background-color: black;
+}
