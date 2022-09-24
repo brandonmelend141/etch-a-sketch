@@ -5,20 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide">
     <script src="./sketch-logic.js" defer></script>
     <title>Etch A Sketch</title>
 </head>
 <body>
     <div class="wrapper">
         <div class="header">Etch A Sketch</div>
-        <div class="drawing-options">
-            <ul>
-                <li> <button id="update-grid" class ="option-button">resize</button> </li>
-                <li> <button id="RGB-mode"class="option-button">Toggle RGB Mode</button></li>
-            </ul>
-            
+        <div class="drawing-content">
+            <div class="drawing-options">
+                <ul>
+                    <li> <button id="update-grid" class ="option-button">resize</button> </li>
+                    <li> <button id="RGB-mode"class="option-button">Toggle RGB Mode</button></li>
+                </ul>
+            </div>    
+            <div class="sketch-container"></div>
         </div>
-        <div class="sketch-container"></div>
+      
 
     </div>
 

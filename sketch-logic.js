@@ -1,4 +1,4 @@
-function drawOnHover(e){
+function drawOn(e){
     const gridSquare = document.querySelector(`#${e.target.id}`)
     gridSquare.classList.add('grid-item-draw'); 
 }
@@ -26,7 +26,7 @@ function genRandomColor(){
 
 function setRGBMode(e){
     const sketchSquares = document.querySelectorAll('.grid-item');
-    sketchSquares.forEach(square => square.removeEventListener('mouseover',drawOnHover));
+    sketchSquares.forEach(square => square.removeEventListener('mouseover',drawOn));
     sketchSquares.forEach(square => square.addEventListener('mouseover',drawOnHoverRGB))
 }
 const sketchContainer = document.querySelector(".sketch-container");
@@ -40,7 +40,7 @@ function createGrid(col,row){
         sketchContainer.appendChild(cell);
    }
    const sketchSquares = document.querySelectorAll('.grid-item');
-   sketchSquares.forEach(square => square.addEventListener('mouseover',drawOnHover));
+   sketchSquares.forEach(square => square.addEventListener('mouseover',drawOn));
 }
 
 createGrid(16,16);
