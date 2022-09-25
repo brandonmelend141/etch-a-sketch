@@ -8,6 +8,24 @@ function drawOnHoverRGB(e){
     gridSquare.classList.add('grid-item-draw');
     gridSquare.setAttribute('style', `background-color: rgb(${newColor[0]},${newColor[1]},${newColor[2]})`);
 }
+
+function shadowDraw(e){
+    const gridSquare = document.querySelector(`#${e.target.id}`);
+    gridSquare.classList.add('grid-item-draw-shadow');
+    let currentVisibility = parseFloat(getComputedStyle(gridSquare).getPropertyValue('background-color').split(',')[3]);
+    
+    if(currentVisibility <= 0.9){
+        gridSquare.setAttribute('style',`background-color:rgb(0,0,0,${currentVisibility+=0.1})`);
+    }else{ 
+        gridSquare.setAttribute('style',`background-color:rgb(0,0,0,1)`);
+    }
+   
+    console.log(currentVisibility)
+
+   
+    
+}
+
 function resizeGrid(e){
     let newGrid = prompt("Enter a number between 0-100");
 
@@ -27,8 +45,17 @@ function genRandomColor(){
 function setRGBMode(e){
     const sketchSquares = document.querySelectorAll('.grid-item');
     sketchSquares.forEach(square => square.removeEventListener('mouseover',drawOn));
-    sketchSquares.forEach(square => square.addEventListener('mouseover',drawOnHoverRGB))
+    sketchSquares.forEach(square => square.addEventListener('mouseover',drawOnHoverRGB));
 }
+
+
+function setShadowMode(e){
+    const sketchSquares = document.querySelectorAll('.grid-item');
+    sketchSquares.forEach(square => square.removeEventListener('mouseover',drawOn));
+    sketchSquares.forEach(square => square.addEventListener('mouseover',shadowDraw));
+}
+
+
 const sketchContainer = document.querySelector(".sketch-container");
 function createGrid(col,row){
    sketchContainer.style.setProperty('--grid-cols',col);
@@ -51,3 +78,6 @@ resizeButton.addEventListener('click',resizeGrid);
 
 const rgbMode = document.querySelector("#RGB-mode");
 rgbMode.addEventListener('click',setRGBMode);
+
+const shadowMode = document.querySelector('#shadow-mode');
+shadowMode.addEventListener('click',setShadowMode);
