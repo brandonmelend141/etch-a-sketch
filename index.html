@@ -15,10 +15,11 @@
         <div class="drawing-content">
             <div class="drawing-options">
                 <ul>
-                    <li> <button id="update-grid" class ="option-button">resize</button> </li>
-                    <li> <button id="RGB-mode"class="option-button">Toggle RGB Mode</button></li>
-                    <li> <button id="shadow-mode"class="option-button">Toggle Shadow Mode</button></li>
-
+                    <li> <input type="color" id="colorChoice" class="colorPicker"></li>
+                    <li> <button id="color-mode"class="option-button">Color Mode</button></li>
+                    <li> <button id="RGB-mode"class="option-button">RGB Mode</button></li>
+                    <li> <button id="shadow-mode"class="option-button">Shadow Mode</button></li>
+                    <li><div class="slidecontainer"><input type="range" min="1" max="100" class="slider" id="myRange"></div></li>
                 </ul>
             </div>    
             <div class="sketch-container"></div>

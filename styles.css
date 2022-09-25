@@ -2,6 +2,7 @@
     --grid-cols:1;
     --grid-rows:1;
     --shadow: 0;
+    --default-color:black;
 }
 body{
     margin: 0;
@@ -26,6 +27,10 @@ body{
     justify-content: center;
     margin: 20px;
 }
+.drawing-options{
+    border: solid;
+    margin: 20px;
+}
 .header{
     font-family: Audiowide,serif;
     color: #00B8EE;
@@ -41,8 +46,68 @@ body{
 
 
 .grid-item-draw{
+    background-color: var(--default-color);
+}
+
+.grid-item-draw-rgb{
     background-color: black;
 }
+
 .grid-item-draw-shadow{
     background-color: rgba(0, 0, 0, 0);
+}
+
+.drawing-options ul{ 
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    /* opacity: 0.7; */
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+  
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #00B8EE;
+    cursor: pointer;
+}
+  
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #00B8EE;
+    cursor: pointer;
+}
+input[type='color'] {
+    -webkit-appearance: none;
+    width: 80px;
+    height: 80px;
+    border: none;
+    background-color: #FAC898;
+}
+
+input[type='color']::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+  
+input[type='color']::-webkit-color-swatch {
+    border: none;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

@@ -1,11 +1,12 @@
+let drawColor = 'black'
 function drawOn(e){
     const gridSquare = document.querySelector(`#${e.target.id}`)
-    gridSquare.classList.add('grid-item-draw'); 
+    gridSquare.setAttribute('style',`background-color:${drawColor}`)
 }
 function drawOnHoverRGB(e){
     let newColor = genRandomColor();
     const gridSquare = document.querySelector(`#${e.target.id}`);
-    gridSquare.classList.add('grid-item-draw');
+    gridSquare.classList.add('grid-item-draw-rgb');
     gridSquare.setAttribute('style', `background-color: rgb(${newColor[0]},${newColor[1]},${newColor[2]})`);
 }
 
@@ -19,20 +20,18 @@ function shadowDraw(e){
     }else{ 
         gridSquare.setAttribute('style',`background-color:rgb(0,0,0,1)`);
     }
-   
-    console.log(currentVisibility)
-
-   
-    
 }
 
 function resizeGrid(e){
-    let newGrid = prompt("Enter a number between 0-100");
+    const newGrid = document.querySelector("#myRange");
 
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach(square => square.remove())
-    
-    createGrid(newGrid,newGrid);
+    createGrid(newGrid.value,newGrid.value);
+}
+function setColor(e){
+    const newColor = document.querySelector('#colorChoice');
+    drawColor = newColor.value
 }
 
 function genRandomColor(){
@@ -41,6 +40,17 @@ function genRandomColor(){
     let  blue = Math.floor(Math.random()*(255+1));
     return [red,green,blue];
 }
+// function setColorMode(e){
+//     const sketchSquares = document.querySelectorAll('.grid-item');
+//     sketchSquares.forEach(square =>{
+//         if(square.className ==='grid-item-draw-rgb' ){
+//             square.removeEventListener('mouseover',drawOnHoverRGB);
+//         }else{
+//             square.removeEventListener('mouseover',shadowDraw);
+//         }
+//     } );
+//     sketchSquares.forEach(square => square.addEventListener('mouseover',drawOn))
+// }
 
 function setRGBMode(e){
     const sketchSquares = document.querySelectorAll('.grid-item');
@@ -73,11 +83,17 @@ function createGrid(col,row){
 createGrid(16,16);
 
 
-const resizeButton = document.querySelector('#update-grid');
-resizeButton.addEventListener('click',resizeGrid);
+const resizeRange = document.querySelector('#myRange');
+resizeRange.addEventListener('mouseup',resizeGrid);
+
+// const colorMode = document.querySelector("#color-mode");
+// colorMode.addEventListener('click',setColorMode);
 
 const rgbMode = document.querySelector("#RGB-mode");
 rgbMode.addEventListener('click',setRGBMode);
 
 const shadowMode = document.querySelector('#shadow-mode');
 shadowMode.addEventListener('click',setShadowMode);
+
+const colorPicker = document.querySelector('#colorChoice');
+colorPicker.addEventListener('change',setColor);
