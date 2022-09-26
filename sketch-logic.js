@@ -1,26 +1,30 @@
 let drawColor = 'black'
+let colorModeCheck = true;
+let rgbModeCheck = false; 
+let shadowModeCheck = false; 
 function drawOn(e){
     const gridSquare = document.querySelector(`#${e.target.id}`)
-    gridSquare.setAttribute('style',`background-color:${drawColor}`)
-}
-function drawOnHoverRGB(e){
-    let newColor = genRandomColor();
-    const gridSquare = document.querySelector(`#${e.target.id}`);
-    gridSquare.classList.add('grid-item-draw-rgb');
-    gridSquare.setAttribute('style', `background-color: rgb(${newColor[0]},${newColor[1]},${newColor[2]})`);
-}
+    if(rgbModeCheck){
+       
+        let newColor = genRandomColor();
+        gridSquare.setAttribute('style', `background-color: rgb(${newColor[0]},${newColor[1]},${newColor[2]},1)`);
+    }else if(shadowModeCheck){
 
-function shadowDraw(e){
-    const gridSquare = document.querySelector(`#${e.target.id}`);
-    gridSquare.classList.add('grid-item-draw-shadow');
-    let currentVisibility = parseFloat(getComputedStyle(gridSquare).getPropertyValue('background-color').split(',')[3]);
-    
-    if(currentVisibility <= 0.9){
-        gridSquare.setAttribute('style',`background-color:rgb(0,0,0,${currentVisibility+=0.1})`);
-    }else{ 
-        gridSquare.setAttribute('style',`background-color:rgb(0,0,0,1)`);
+        console.log(getComputedStyle(gridSquare).getPropertyValue("background-color"));
+            let currentVisibility = parseFloat(getComputedStyle(gridSquare).getPropertyValue('background-color').split(',')[3]);
+            console.log(currentVisibility)
+            if(currentVisibility <= 0.9){
+                gridSquare.setAttribute('style',`background-color:rgb(0,0,0,${currentVisibility+=0.1})`);
+            }else{ 
+                gridSquare.setAttribute('style',`background-color:rgb(0,0,0,1)`);
+            }
+
+    }else if(colorModeCheck){
+        
+        gridSquare.setAttribute('style',`background-color:${drawColor}`)
     }
 }
+
 
 function resizeGrid(e){
     const newGrid = document.querySelector("#myRange");
@@ -34,35 +38,30 @@ function setColor(e){
     drawColor = newColor.value
 }
 
+
 function genRandomColor(){
     let  red = Math.floor(Math.random()*(255+1));
     let  green = Math.floor(Math.random()*(255+1));
     let  blue = Math.floor(Math.random()*(255+1));
     return [red,green,blue];
 }
-// function setColorMode(e){
-//     const sketchSquares = document.querySelectorAll('.grid-item');
-//     sketchSquares.forEach(square =>{
-//         if(square.className ==='grid-item-draw-rgb' ){
-//             square.removeEventListener('mouseover',drawOnHoverRGB);
-//         }else{
-//             square.removeEventListener('mouseover',shadowDraw);
-//         }
-//     } );
-//     sketchSquares.forEach(square => square.addEventListener('mouseover',drawOn))
-// }
+function setColorMode(e){
+    colorModeCheck = true; 
+    rgbModeCheck = false;
+    shadowModeCheck = false; 
+}
 
 function setRGBMode(e){
-    const sketchSquares = document.querySelectorAll('.grid-item');
-    sketchSquares.forEach(square => square.removeEventListener('mouseover',drawOn));
-    sketchSquares.forEach(square => square.addEventListener('mouseover',drawOnHoverRGB));
+    colorModeCheck = false; 
+    rgbModeCheck = true;
+    shadowModeCheck = false; 
 }
 
 
 function setShadowMode(e){
-    const sketchSquares = document.querySelectorAll('.grid-item');
-    sketchSquares.forEach(square => square.removeEventListener('mouseover',drawOn));
-    sketchSquares.forEach(square => square.addEventListener('mouseover',shadowDraw));
+    colorModeCheck = false; 
+    rgbModeCheck = false;
+    shadowModeCheck = true; 
 }
 
 
@@ -86,8 +85,8 @@ createGrid(16,16);
 const resizeRange = document.querySelector('#myRange');
 resizeRange.addEventListener('mouseup',resizeGrid);
 
-// const colorMode = document.querySelector("#color-mode");
-// colorMode.addEventListener('click',setColorMode);
+const colorMode = document.querySelector("#color-mode");
+colorMode.addEventListener('click',setColorMode);
 
 const rgbMode = document.querySelector("#RGB-mode");
 rgbMode.addEventListener('click',setRGBMode);
