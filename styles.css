@@ -150,14 +150,14 @@ input[type='color']::-webkit-color-swatch {
     box-shadow: 0px 0px 5px 5px rgb(190, 4, 190);
 }
 .footer{
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     justify-content: center;
     align-items: center;
     /* margin: 2px auto 0 auto; */
-    bottom: 0;
+    /* bottom: 0;
     left: 0;
-    right: 0;
+    right: 0; */
     padding: 10px;
     gap: 40px;
 }
