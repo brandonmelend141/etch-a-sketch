@@ -10,6 +10,8 @@ body{
 }
 .wrapper{
     display: flex;
+    height: auto;
+    width: 100%;
     flex-direction: column;
 }
 .sketch-container{
