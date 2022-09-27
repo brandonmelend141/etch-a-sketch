@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yellowtail">
     <script src="./sketch-logic.js" defer></script>
     <title>Etch A Sketch</title>
 </head>
@@ -16,10 +16,12 @@
             <div class="drawing-options">
                 <ul>
                     <li> <input type="color" id="colorChoice" class="colorPicker"></li>
-                    <li> <button id="color-mode"class="option-button">Color Mode</button></li>
+                    <li> <button id="color-mode"class="option-button button-active">Color Mode</button></li>
                     <li> <button id="RGB-mode"class="option-button">RGB Mode</button></li>
                     <li> <button id="shadow-mode"class="option-button">Shadow Mode</button></li>
-                    <li><div class="slidecontainer"><input type="range" min="1" max="100" class="slider" id="myRange"></div></li>
+                    <li> <button id="clear-mode"class="option-button">Clear Grid</button></li>
+                    <li><div class="range-container"></div></li>
+                    <li><div class="slidecontainer"><input type="range" min="1" max="100" value = '16' class="slider" id="myRange"></div></li>
                 </ul>
             </div>    
             <div class="sketch-container"></div>
